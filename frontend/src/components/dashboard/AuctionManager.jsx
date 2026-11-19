@@ -69,14 +69,18 @@ export default function AuctionManager({ products }) {
   return (
     <div style={{ background: '#fff', borderRadius: 12, padding: 24, boxShadow: '0 1px 8px #0001', marginTop: 24, maxWidth: 440 }}>
       <h3 style={{ marginBottom: 16, color: '#333' }}>🔨 Create Auction</h3>
-      {msg && (
-        <div
-          role="alert"
-          style={{ ...s.msg, background: msg.type === 'ok' ? '#d8f3dc' : '#fee', color: msg.type === 'ok' ? '#2d6a4f' : '#c0392b' }}
-        >
-          {msg.text}
-        </div>
-      )}
+      <div
+        role="alert"
+        aria-live="polite"
+        style={{
+          ...s.msg,
+          visibility: msg ? 'visible' : 'hidden',
+          background: msg?.type === 'ok' ? '#d8f3dc' : '#fee',
+          color: msg?.type === 'ok' ? '#2d6a4f' : '#c0392b',
+        }}
+      >
+        {msg?.text || '\u00a0'}
+      </div>
       <form onSubmit={handleSubmit}>
         <label style={s.label} htmlFor="auction-product">Product</label>
         <select
